@@ -1,4 +1,4 @@
-package com.alexstudy.service;
+//package com.alexstudy.service;
 
 import com.rabbitmq.client.*;
 
@@ -51,6 +51,7 @@ public class RPCServer {
                         int n = Integer.parseInt(message);
 
                         System.out.println(" [.] fib(" + message + ")");
+                        System.out.println(" [.] consumer tag" + consumerTag + " envelope " + envelope.getRoutingKey());
                         response += fib(n);
                     }
                     catch (RuntimeException e){
