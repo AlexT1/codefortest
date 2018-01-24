@@ -12,7 +12,9 @@
       <sourceFolder url="file://$MODULE_DIR$/for-mongo/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/for-mongo/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/for-mongo/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/for-rabbitmq" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/for-rabbitmq/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/for-rabbitmq/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/for-rabbitmq/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
