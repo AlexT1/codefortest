@@ -1,6 +1,5 @@
 package com.alexstudy.base;
 
-import com.alexstudy.model.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 

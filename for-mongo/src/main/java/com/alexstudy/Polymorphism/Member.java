@@ -1,4 +1,4 @@
-package com.alexstudy.model;
+package com.alexstudy.Polymorphism;
 
 import java.util.Date;
 

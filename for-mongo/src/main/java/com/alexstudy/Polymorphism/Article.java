@@ -1,4 +1,4 @@
-package com.alexstudy.model;
+package com.alexstudy.Polymorphism;
 
 /**
  * @author AlexTong

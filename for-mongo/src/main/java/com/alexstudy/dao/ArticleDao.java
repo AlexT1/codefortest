@@ -1,8 +1,7 @@
 package com.alexstudy.dao;
 
 import com.alexstudy.base.MongoGenDao;
-import com.alexstudy.model.Article;
-import com.alexstudy.model.Member;
+import com.alexstudy.Polymorphism.Article;
 import org.springframework.stereotype.Repository;
 
 /**

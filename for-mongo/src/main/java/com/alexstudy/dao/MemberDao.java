@@ -1,8 +1,8 @@
 package com.alexstudy.dao;
 
-import com.alexstudy.base.MongoGenDao;
-import com.alexstudy.model.Member;
 
+import com.alexstudy.base.MongoGenDao;
+import com.alexstudy.Polymorphism.Member;
 
 /**
  * @author AlexTong
