@@ -11,6 +11,14 @@ import java.lang.reflect.Modifier;
  */
 public class Hello {
         public static void main(String[] args) {
+            int[] r = new int[args.length];
+            System.out.println(r.length);
+            String a = "|";
+            String ua = stringToUnicode(a);
+            System.out.println(ua);
+            String oa = "丨";
+            String uoa = stringToUnicode(oa);
+            System.out.println(uoa);
         /*获取本类的全部属性*/
             Class<?> demo = null;
          /* try {
@@ -40,4 +48,18 @@ public class Hello {
                 //Field[] field=demo.getFields();这个方法
             }
         }
+    public static String stringToUnicode(String s) {
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            int ch = (int) s.charAt(i);
+            if (ch > 255)
+                str += s.charAt(i) + ": " + "\\u" + Integer.toHexString(ch)
+                        + "\n";
+            else
+                str += s.charAt(i) + ": " + "\\u00" + Integer.toHexString(ch)
+                        + "\n";
+        }
+        return str;
+    }
+
     }
