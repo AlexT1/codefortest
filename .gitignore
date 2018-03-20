@@ -1,4 +1,4 @@
 /target/
-/.idea/
+/.idea/*
 codefortest.iml
-.idea/
+/.idea/workspace.xml

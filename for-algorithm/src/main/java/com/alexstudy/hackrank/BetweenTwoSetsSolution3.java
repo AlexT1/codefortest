@@ -30,145 +30,71 @@ public class BetweenTwoSetsSolution3 {
         min_arrayb = min(b);
         max_arrayb = max(b);
         int i = 1;
-        if (min_arraya == 1) {
-            map.put(count,min_arraya);
+        if (min_arraya == 1 && max_arraya == 1) {
+            map.put(count, min_arraya);
             count++;
             if (min_arrayb == 1) {
                 count++;
                 return count;
             }
         }
-        if (max_arraya%min_arraya == 0 && max_arrayb%min_arrayb == 0) {
-            if (min_arrayb%max_arraya == 0) {
-                if (countBit(min_arrayb) == 1 && countBit(max_arraya) == 1) {
-                    while (min_arrayb % max_arraya == 0) {
-                        max_arraya = max_arraya << 1;
-                        map.put(count, max_arraya);
+        if (max_arraya % min_arraya == 0 && max_arrayb % min_arrayb == 0) {
+            if (min_arrayb % max_arraya == 0) {
+                map.put(count, min_arrayb);
+                count++;
+                do {
+                    if (min_arrayb % i == 0 && i % max_arraya == 0) {
+                        map.put(count, i);
                         count++;
-                    }
-                } else {
-
-                    do {
-                        if (min_arrayb%i == 0 && min_arrayb%max_arraya == 0) {
-                            map.put(count, max_arraya);
+                        if ((min_arrayb / i) % max_arraya == 0) {
+                            map.put(count, min_arrayb / i);
                             count++;
                         }
-                        i++;
-                    } while (i <= 10);
-                }
-            }
-        } else  {
-            if (max_arrayb%min_arrayb == 0) {
+                    }
 
-            } else {
+                    i++;
+                } while (i <= 10);
+            }
+        } else {
+            if (max_arrayb % min_arrayb != 0) {
+                if (max_arraya % min_arraya != 0) {
+                    int temp = max_arraya * min_arraya;
+                    int result = 1;
+                    do {
+                        if (temp % i == 0) {
+                            result = result * i;
+                        }
+                    } while (i <= 10);
+                    if (result > temp) {
+                        max_arraya = temp;
+                    } else {
+                        max_arraya = result;
+                    }
+                }
                 do {
-                    if (min_arrayb%i == 0 && min_arrayb%max_arraya == 0) {
-                        map.put(count, max_arraya);
+                    if (min_arrayb % i == 0 && max_arrayb % i == 0 && i % max_arraya == 0) {
+                        map.put(count, i);
                         count++;
+                        if ((min_arrayb / i) % max_arraya == 0 && (min_arrayb / i) % max_arraya == 0) {
+                            map.put(count, min_arrayb / i);
+                            count++;
+                        }
                     }
                     i++;
                 } while (i <= 10);
             }
-        }
-        if ((countBit(max_arrayb) = 1) && (countBit(max_arraya) == 1)) {
-
-            if (min_arrayb != 1 && (max_arrayb%min_arrayb == 0) && (min_arrayb%random == 0)) {
-                while (min_arrayb % max_arraya == 0) {
-                    max_arraya = max_arraya << 1;
-                    map.put(count, max_arraya);
-                    count++;
-                }
-                int random3 = 0;
-                if (countBit(b[0])!=1) {
-                   random3 = max_arraya + random;
-                }
-                random=random3;
-                while (min_arrayb%random == 0){
-                    map.put(count,random);
-                    count++;
-                    random = random3 + random;
-                    if (countBit(random) > 3) {
-                        random = random3 + random + random3;
-                    }
-                }
-                if (b.length==1) {
-                    map.put(count,b[0]);
-                    count++;
-                }
-                int tmp_value = max_arrayb;
-                while (max_arrayb%tmp_value == 0){
-                    tmp_value = tmp_value >> 1;
-                    map.put(count,tmp_value);
-                    count++;
-                }
-                Set<Integer> set = new HashSet<Integer>();
-                for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-                    if (b[0]%entry.getValue() ==0) {
-                        set.add(entry.getValue());
-                    }
-                }
-                count = set.size();
-                return count;
-            } else {
-                //max_arrayb % min_arrayb != 0
-
-                if (min_arrayb == 1) {
-                    map.put(count,min_arrayb);
-                    count++;
-                }
-                map = countTotal(random,min_arrayb,max_arraya,map,count, max_arrayb);
-                count = map.size();
-                map = countTotal(random_two,min_arrayb,max_arraya,map,count, max_arrayb);
-
-                Set<Integer> set = new HashSet<Integer>();
-                for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-                    if (b[0]%entry.getValue() ==0) {
-                        set.add(entry.getValue());
-                    }
-                }
-                count = set.size();
-                return count;
-
-            }
-        } else {
-            if (max_arrayb%min_arrayb == 0) {
-                map.put(count,min_arrayb);
-                count++;
-                int tmp_value = min_arrayb;
-                while (tmp_value%max_arraya == 0) {
-                    map.put(count,tmp_value);
-                    tmp_value = tmp_value >> 1;
-                    count++;
-                }
-            }
-            map = countTotal(random,min_arrayb,max_arraya,map,count, max_arrayb);
-            count = map.size();
-            map = countTotal(random_two,min_arrayb,max_arraya,map,count, max_arrayb);
-            Set<Integer> set = new HashSet<Integer>();
-            for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-                if ((b[0]%entry.getValue() ==0) && (entry.getValue()%a[a.length-1] == 0)) {
-                    set.add(entry.getValue());
-                }
-            }
-            count = set.size();
-            return count;
 
         }
-    }
 
-    private static int countBit(int num) {
-        int count = 0;
-        for (; num > 0; count++) {
-            num &= (num - 1);
+        Set<Integer> set = new HashSet<Integer>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (b[0] % entry.getValue() == 0) {
+                set.add(entry.getValue());
+            }
         }
+        count = set.size();
         return count;
-    }
-    private static int countNearBit(int num) {
-        int count = 0;
-        for (; num > 0; count++) {
-            num &= (num - 1);
-        }
-        return count;
+
     }
 
     private static int min(int[] array) {
@@ -183,26 +109,13 @@ public class BetweenTwoSetsSolution3 {
     }
 
     private static int max(int[] array) {
-        int maxIndex=0, maxValue =array[maxIndex];
+        int maxIndex = 0, maxValue = array[maxIndex];
         for (int i = 0; i < array.length; i++) {
             if (array[i] > array[maxIndex])
                 maxValue = array[i];
-                maxIndex = i;
+            maxIndex = i;
         }
         return maxValue;
-    }
-
-    private static HashMap<Integer, Integer> countTotal(int binary, int arrayValue, int maxa, HashMap<Integer, Integer> map, int index,int maxArrayValue) {
-        int countTotal = index;
-        HashMap<Integer, Integer> return_map = map;
-        while (binary < 100) {
-            if ((arrayValue%binary == 0) && (binary%maxa == 0) && (maxArrayValue%binary == 0)) {
-                    return_map.put(countTotal, binary);
-                    countTotal++;
-            }
-            binary = binary << 1;
-        }
-        return return_map;
     }
 
     public static void main(String[] args) {
@@ -218,8 +131,8 @@ public class BetweenTwoSetsSolution3 {
 //        for(int b_i = 0; b_i < m; b_i++){
 //            b[b_i] = in.nextInt();
 //        }
-//        int[] a = {2, 4};
-//        int[] b = {16, 32, 96};
+        int[] a = {2, 4};
+        int[] b = {16, 32, 96};
 //        int[] a = {1};
 //        int[] b={72,48};
 //        int[] a = {2};
@@ -231,8 +144,8 @@ public class BetweenTwoSetsSolution3 {
 //        int[] b = {42,84};
 //        int[] a = {3,9,6};
 //        int[] b = {36,72};
-        int[] a = {1};
-        int[] b = {100};
+//        int[] a = {1};
+//        int[] b = {100};
         int total = getTotalX(a, b);
         System.out.println(total);
         // in.close();

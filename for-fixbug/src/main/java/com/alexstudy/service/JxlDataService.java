@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.security.InvalidParameterException;
@@ -56,12 +57,14 @@ public class JxlDataService {
 
             String reportdata = null;
             try {
+                reportdata = reportdata == null ? jxlDataAnalyseService.readFileAsString("C:\\Users\\dixin\\Desktop\\lxVB_g2rSL-OyWPtwwWUlA.txt") :null;
                 String rawdata = jxlDataAnalyseService.readFileAsString("C:\\Users\\dixin\\Desktop\\Y_k2nLO3TcmJ4TSFlbO59Q.txt");
-                reportdata = jxlDataAnalyseService.readFileAsString("C:\\Users\\dixin\\Desktop\\lxVB_g2rSL-OyWPtwwWUlA.txt");
+//                reportdata = jxlDataAnalyseService.readFileAsString("C:\\Users\\dixin\\Desktop\\lxVB_g2rSL-OyWPtwwWUlA.txt");
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            
     }
 
 }

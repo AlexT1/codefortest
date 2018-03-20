@@ -32,7 +32,7 @@ public class BetweenTwoSetsSolution2 {
         int random = 2;
         int random_two = 3;
         if ((max_arraya%min_arraya == 0) && (countBit(max_arraya) == 1)) {
-            if (min_arraya == 1) {
+            if (min_arraya == 1 || min_arrayb == 1) {
                 map.put(count,min_arraya);
                 count++;
             }
