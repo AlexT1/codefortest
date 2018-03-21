@@ -117,8 +117,22 @@ public class BetweenTwoSetsSolution3 {
         }
         return maxValue;
     }
+    public static String getUnicode(String source){
+        String returnUniCode=null;
+        String uniCodeTemp=null;
+        for(int i=0;i<source.length();i++){
+            uniCodeTemp = "\\u"+Integer.toHexString((int)source.charAt(i));//使用char类的charAt()的方法
+            returnUniCode=returnUniCode==null?uniCodeTemp:returnUniCode+uniCodeTemp;
+        }
+        System.out.print(source +" 's unicode = "+returnUniCode);
+        return returnUniCode;//返回一个字符的unicode的编码值
+    }
 
     public static void main(String[] args) {
+        int[] test = {4,3,2,3};
+        for(int i : test){
+            System.out.println( "i " + i + "  " + getUnicode(String.valueOf(i)));
+        }
 
 //        Scanner in = new Scanner(System.in);
 //        int n = in.nextInt();
