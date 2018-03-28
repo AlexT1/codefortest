@@ -1,9 +1,6 @@
 package com.alexstudy.hackrank;
 
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author AlexTong
@@ -14,33 +11,64 @@ import java.util.Scanner;
 public class FormingMagicSquareSolution {
     static int formingMagicSquare(int[][] s) {
         // Complete this function
-        int result = 0, target = 15, temp = 0, tempIndexi = 0, tempIndexj = 0, tempDvalue = 0, sumCost = 0,
-            rightDiagonal = 0,leftDiagonal = 0;
-        for (int i = 0; i < 3; i++) {
-            result = s[i][0] + s[i][1] + s[i][2];
-            tempDvalue = Math.abs(target - result);
-            if (tempDvalue != 0) {
-                for (int j = 0; j < 3; j++) {
-                    temp = s[0][j] + s[1][j] + s[2][j];
-                    if (temp != target) {
-                        tempIndexi = i;
-                        tempIndexj = j;
-                    }
-                }
-                if (target - result > 0) {
-                    s[i][tempIndexj] = s[tempIndexi][tempIndexj] + tempDvalue;
-                } else {
-                    s[i][tempIndexj] = s[tempIndexi][tempIndexj] - tempDvalue;
-                }
-                sumCost = sumCost + tempDvalue;
+//        int[][][] possiblePermutations = {
+//                {{8, 1, 6}, {3, 5, 7}, {4, 9, 2}},// 1
+//
+//                {{6, 1, 8}, {7, 5, 3}, {2, 9, 4}},// 2
+//
+//                {{4, 9, 2}, {3, 5, 7}, {8, 1, 6}},// 3
+//
+//                {{2, 9, 4}, {7, 5, 3}, {6, 1, 8}},// 4
+//
+//                {{8, 3, 4}, {1, 5, 9}, {6, 7, 2}},// 5
+//
+//                {{4, 3, 8}, {9, 5, 1}, {2, 7, 6}},// 6
+//
+//                {{6, 7, 2}, {1, 5, 9}, {8, 3, 4}},// 7
+//
+//                {{2, 7, 6}, {9, 5, 1}, {4, 3, 8}},// 8
+//        };
+        int[] thirdLine = {1,2,3,4,6,7,8,9};
+        int[] secondLine = {1,3,5,7,9};
+        int sumCost = 0, target = 15, tempDvalue = 0, tempRvalue = 0, minValue = 0;
+        List<Integer> firstLine = new ArrayList<Integer>();
+        List<Integer> centralLine = new ArrayList<Integer>();
+        int centralSum = s[1][0] + s[1][1] + s[1][2] ;
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int n = 1; n < 10; n++) {
+            firstLine.add(n);
+            if (n%2 != 0) {
+                centralLine.add(n);
             }
         }
-        leftDiagonal = s[0][0] + s[1][1] + s[2][2];
-        rightDiagonal = s[0][2] + s[1][1] + s[2][0];
-        if (leftDiagonal != target || rightDiagonal != target) {
-
+        if (s[1][1] != 5) {
+            tempRvalue = 5 - s[1][1];
+            tempDvalue = Math.abs(5 - s[1][1]);
+            s[1][1] = s[1][1] + tempRvalue;
+            sumCost = sumCost + tempDvalue;
         }
-        return sumCost;
+        int oldValue = 0;
+        for (int j = 1; j < 10; j= j+2) {
+            if (j!=5){
+                oldValue = s[1][1];
+                int now =  oldValue - j;
+                if (now < minValue) {
+                    minValue = now;
+                    s[1][1] = j;
+                }
+            }
+        }
+        switch (s[1][1]) {
+            case 1:
+                break;
+            case 3:
+                break;
+            case 7:
+                break;
+            case 9:
+                break;
+        }
+        return  sumCost;
     }
 
     public static void main(String[] args) {
