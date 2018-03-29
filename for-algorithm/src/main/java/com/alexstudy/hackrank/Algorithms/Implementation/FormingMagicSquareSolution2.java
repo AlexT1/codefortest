@@ -1,17 +1,13 @@
-package com.alexstudy.hackrank;
-
-import java.util.Scanner;
+package com.alexstudy.hackrank.Algorithms.Implementation;
 
 /**
  * @author AlexTong
- * @ClassName OtherWayMagicSquare
+ * @ClassName FormingMagicSquareSolution2
  * @Description TODO()
- * @date 2018/3/26 17:04:53
+ * @date 2018/3/27 16:16:55
  */
-public class OtherWayMagicSquare {
-    public static void main(String[] args) {
-
-        Scanner input = new Scanner(System.in);
+public class FormingMagicSquareSolution2 {
+    static int formingMagicSquare(int[][] s) {
         int[][][] possiblePermutations = {
                 {{8, 1, 6}, {3, 5, 7}, {4, 9, 2}},// 1
 
@@ -30,13 +26,6 @@ public class OtherWayMagicSquare {
                 {{2, 7, 6}, {9, 5, 1}, {4, 3, 8}},// 8
         };
 
-        int[][] given = new int[3][3];
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-                given[i][j] = input.nextInt();
-        }
-
         int minCost = Integer.MAX_VALUE;
         for (int permutation = 0; permutation < 8; permutation++)
         {
@@ -44,10 +33,23 @@ public class OtherWayMagicSquare {
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
-                    permutationCost += Math.abs(given[i][j] - possiblePermutations[permutation][i][j]);
+                    permutationCost += Math.abs(s[i][j] - possiblePermutations[permutation][i][j]);
             }
             minCost = Math.min(minCost, permutationCost);
         }
-        System.out.println(minCost);
+        return minCost;
+    }
+    public static void main(String[] args) {
+        int[] single = {6, 4, 6, 9, 9, 3, 9, 9, 7};
+        int[][] s = new int[3][3];
+        int middle = 0;
+        for (int s_i = 0; s_i < 3; s_i++) {
+            for (int s_j = 0; s_j < 3; s_j++) {
+                s[s_i][s_j] = single[middle + s_j];
+            }
+            middle = middle + 3;
+        }
+        int result = formingMagicSquare(s);
+        System.out.println(result);
     }
 }

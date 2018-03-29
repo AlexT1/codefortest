@@ -1,4 +1,4 @@
-package com.alexstudy.hackrank;
+package com.alexstudy.hackrank.Algorithms.Implementation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
