@@ -1,6 +1,8 @@
 package com.alexstudy.hackrank.Algorithms.Implementation;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -14,40 +16,51 @@ public class ClimbingLeaderboardSolution {
     /*
    * Complete the climbingLeaderboard function below.
    */
-    static int[] climbingLeaderboard(int[] scores, int[] alice) {
+    static Integer[] climbingLeaderboard(int[] scores, int[] alice) {
         /*
          * Write your code here.
          */
-        int result = 1,index=0;
+        int result = 1;
+        boolean b[] = new boolean[alice.length];
         TreeMap<Integer,Integer> treeMap = new TreeMap<Integer,Integer>();
-        int[] resultArray = new int[alice.length];
+        TreeMap<Integer,Integer> aliceMap = new TreeMap<Integer,Integer>();
+        ArrayList<Integer> tempArray = new ArrayList<Integer>();
         for(int score: scores){
             if (!treeMap.containsKey(score)) {
                 treeMap.put(score,result);
                 result++;
             }
-            if (alice[index] >= score && index < alice.length) {
-                resultArray[index] = treeMap.get(score)+1;
-                index++;
+        }
+
+        for(int i = 0; i < alice.length; i++){
+            if (aliceMap.containsKey(alice[i])) {
+                b[i] = true;
+            }
+            if(treeMap.ceilingEntry(alice[i]) == null){
+                aliceMap.put(alice[i],1);
             } else {
-                resultArray[index] = (alice.length+1);
-                index++;
-                continue;
+                Map.Entry<Integer,Integer> entry = treeMap.ceilingEntry(alice[i]);
+                if (entry.getKey() == alice[i]) {
+                    aliceMap.put(alice[i], entry.getValue());
+                } else {
+                    aliceMap.put(alice[i], entry.getValue()+1);
+                }
             }
         }
 
-//        for(int i = 0; i < alice.length; i++) {
-//
-//            for (Map.Entry<Integer,Integer> score: treeMap.entrySet()) {
-//                if(score.getKey().compareTo(alice[i]) <= 0) {
-//                    resultArray[i] = score.getValue();
-//                    continue;
-//                } else {
-//                    resultArray[i] = score.getValue()+1;
-//                    break;
-//                }
-//            }
-//        }
+        for(Map.Entry<Integer,Integer> entry: aliceMap.entrySet()){
+            tempArray.add(entry.getValue());
+        }
+        int size = tempArray.size();
+        if (tempArray.size() != alice.length) {
+            for(int j = 0; j < b.length; j++){
+                if(b[j] == true){
+                    tempArray.add(j,tempArray.get(j-1));
+                }
+            }
+        }
+        Integer[] resultArray = new Integer[size];
+        resultArray =  (Integer[]) tempArray.toArray(resultArray);
         return resultArray;
     }
 
@@ -79,7 +92,7 @@ public class ClimbingLeaderboardSolution {
 //        }
         int[] scores = {100,100,50,40,40,20,10};
         int[] alice = {5,25,50,120};
-        int[] result = climbingLeaderboard(scores, alice);
+        Integer[] result = climbingLeaderboard(scores, alice);
 
         System.out.print(result.length);
 
