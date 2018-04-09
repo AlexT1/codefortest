@@ -1,4 +1,4 @@
-/target/
+/target/*
 /.idea/*
 codefortest.iml
 fortest.iml
