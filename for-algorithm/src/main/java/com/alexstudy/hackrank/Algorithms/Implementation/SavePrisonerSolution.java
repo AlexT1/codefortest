@@ -22,28 +22,7 @@ public class SavePrisonerSolution {
 //                .mapToObj(i -> (i))
 //                .toArray(Integer[]::new);
 
-        if (n > m && m > s) {
-            if (LAST_SIT < n) {
-                result = LAST_SIT + (n - LAST_SIT) % s;
-            } else {
-                //System.out.println(LAST_SIT%n);
-                result = (LAST_SIT%n) + (n - LAST_SIT) % s;
-            }
-        } else if (m == n) {
-            result = (n-LAST_SIT)%s;
-        } else {
-            if (LAST_SIT < n) {
-                result = m%(n%s) - LAST_SIT;
-            } else {
-//                System.out.println(LAST_SIT%n);
-//                System.out.println((m%(LAST_SIT+n)));
-                int temp = m%(LAST_SIT+n);
-//                System.out.println(temp%s);
-                result = LAST_SIT%n + (LAST_SIT%n)%m%s ;
-            }
-
-        }
-        LAST_SIT = result;
+        result =(s+(m-1))% n;
         return result;
     }
 
