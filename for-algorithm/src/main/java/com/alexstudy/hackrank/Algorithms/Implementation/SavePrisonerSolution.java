@@ -21,20 +21,29 @@ public class SavePrisonerSolution {
 //        Integer[] prisoner = IntStream.range(1, n)  // n is the array size
 //                .mapToObj(i -> (i))
 //                .toArray(Integer[]::new);
-        System.out.println(n%s);
-        System.out.println(m%n);
-        System.out.println(m%s);
-        if (s == 1) {
-            result = m%n;
-        } else if (m == n){
-            result = m%s;
-        } else if (n > m){
-            result = m%n + n%s;
+
+        if (n > m && m > s) {
+            if (LAST_SIT < n) {
+                result = LAST_SIT + (n - LAST_SIT) % s;
+            } else {
+                //System.out.println(LAST_SIT%n);
+                result = (LAST_SIT%n) + (n - LAST_SIT) % s;
+            }
+        } else if (m == n) {
+            result = (n-LAST_SIT)%s;
         } else {
-            result = m%n - n%s - LAST_SIT;
+            if (LAST_SIT < n) {
+                result = m%(n%s) - LAST_SIT;
+            } else {
+//                System.out.println(LAST_SIT%n);
+//                System.out.println((m%(LAST_SIT+n)));
+                int temp = m%(LAST_SIT+n);
+//                System.out.println(temp%s);
+                result = LAST_SIT%n + (LAST_SIT%n)%m%s ;
+            }
+
         }
-        System.out.println(s%2);
-        LAST_SIT = result + LAST_SIT;
+        LAST_SIT = result;
         return result;
     }
 
