@@ -13,17 +13,29 @@ import java.util.stream.IntStream;
  * @date 2018/4/9 14:47:54
  */
 public class SavePrisonerSolution {
-    private static int LAST_SIT = 0;
     static int saveThePrisoner(int n, int m, int s){
         // Complete this function
-        int result = 0;
-        //when 999999999 999999999 2   Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+        //java 8 give int n to be a sequence array
 //        Integer[] prisoner = IntStream.range(1, n)  // n is the array size
 //                .mapToObj(i -> (i))
 //                .toArray(Integer[]::new);
 
-        result =(s+(m-1))% n;
-        return result;
+        // Complete this function
+        //n : the number of prisoners
+        //m : the number of sweets
+        //s : the chair number to start passing out treats at
+        
+        if(n== 0 || m==0)
+        return 0;
+        if(s+m-1 <= n){
+            return s+m-1;
+        }
+        else{
+            if((s+m-1)%n==0)
+                return n;
+            else
+                return (s+m-1)%n;
+        }
     }
 
     public static void main(String[] args) {
