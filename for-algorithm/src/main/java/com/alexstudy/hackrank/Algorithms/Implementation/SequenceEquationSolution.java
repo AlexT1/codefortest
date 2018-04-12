@@ -20,12 +20,12 @@ public class SequenceEquationSolution {
         int[] result = new int[p.length];
         Map<Integer,Integer> map = new HashMap<Integer, Integer>();
         for(int i = 0; i < p.length; i++){
-            map.put(i,p[i]);
+            map.put(i+1,p[i]);
         }
         for(int j = 1; j <= p.length; j++){
             for(Map.Entry<Integer,Integer> entry : map.entrySet()){
                 if (entry.getValue() == j){
-                    result[j-1] = getKeyByValue(map,entry.getKey())+1;
+                    result[j-1] = getKeyByValue(map,entry.getKey());
                     break;
                 }
             }
