@@ -1,5 +1,6 @@
 package com.alexstudy.hackrank.Algorithms.Implementation;
 
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,26 @@ import java.util.Scanner;
 public class SherlockSquaresSolution {
     static int squares(int a, int b) {
         // Complete this function
-        return 0;
+        int result = 0, mid_index = 0;
+        int sq_a = (int) Math.sqrt(a);
+        if (sq_a == Math.sqrt(a)) {
+            result++;
+        }
+        mid_index = sq_a+1;
+        while (mid_index*mid_index <= b){
+            result++;
+            mid_index++;
+        }
+
+//  Brute force, time due
+//        for(int i = a; i <= b; i++) {
+//
+//            if(Integer.valueOf((int) Math.sqrt(i)) == Math.sqrt(i)) {
+//                result++;
+//            }
+//        }
+
+        return result;
     }
 
     public static void main(String[] args) {
