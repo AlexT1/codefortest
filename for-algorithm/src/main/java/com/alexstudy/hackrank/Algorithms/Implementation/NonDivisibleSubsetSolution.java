@@ -1,10 +1,13 @@
 package com.alexstudy.hackrank.Algorithms.Implementation;
 
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author AlexTong
@@ -22,22 +25,78 @@ public class NonDivisibleSubsetSolution {
         /*
          * Write your code here.
          */
-        int result = 0, index = 1;
+        List<Integer> in_arr = new ArrayList<Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        List<Integer> max = new ArrayList<Integer>();
+        List<Integer> mix = new ArrayList<Integer>();
+        Map<Integer,Integer> count =  new HashMap<Integer, Integer>();
         Arrays.sort(S);
+        max.add(S[0]);
+        max.add(-1);
+        for (int i = 0; i < S.length; i++) {
+            if (S[i] % k != 0) {
+                map.put(S[i], (S[i] % k));
+                in_arr.add(S[i]);
+                if (count.containsKey((S[i] % k))) {
+                    count.put((S[i] % k),count.get((S[i] % k)) +1);
+                } else {
+                    count.put((S[i] % k),1);
+                }
+            }
+            if (max.get(1) < S[i] % k) {
+                max.set(0, S[i]);
+                max.set(1, S[i] % k);
+            }
 
-//        for(int i = 0; i < S.length; i++){
-//            for(int j = i+1; j < S.length; j++){
-//                if((S[i] + S[j])%k != 0) {
-//                    result++;
-//                }
+        }
+
+        //tree map to array list
+        //List<Integer> min_arr = new ArrayList<Integer>(tree_map.values());
+//        Object[] key_arrays =  tree_map.keySet().toArray();
+//        Object[] value_arrays = tree_map.values().toArray();
+
+        //slow
+//        List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
+//        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+//            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+//                return  o2.getValue().compareTo(o1.getValue());
 //            }
-//        }
-        return result;
+//        });
+        Collection<Integer> col = map.values();
+        int index = k % 2 == 0 ? k / 2 : k / 2 + (k % 2);
+        while (max.get(1) >= index) {
+            int temp = Math.abs(k - max.get(1));
+            if (map.containsValue(temp) && map.containsValue(max.get(1)) ) {
+                if (count.get(max.get(1)) > count.get(temp)) {
+                    col.removeAll(max);
+                } else {
+                    mix.add(map.get(temp));
+                    mix.add(temp);
+                    col.removeAll(mix);
+                }
+            }
+            max.set(1, max.get(1).intValue() - 1);
+        }
+
+
+
+        return map.size() - (map.size() - col.size());
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        String currentDate = df.format(new Date());
+//        try {
+//
+//            Date before = df.parse("2018-04-18");
+//            System.out.println(currentDate +  "  before :" + before + "  format :" + df.format(before));
+//            System.out.println(df.format(before).compareTo(currentDate));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
 //        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 //        String[] nk = scanner.nextLine().split(" ");
 //
@@ -74,3 +133,6 @@ public class NonDivisibleSubsetSolution {
         System.out.println("");
     }
 }
+//13 11
+//        582740017 954896345 590538156 298333230 859747706 155195851 331503493 799588305 164222042 563356693 80522822 432354938 652248359
+//11
