@@ -9,7 +9,7 @@ import java.util.*;
  * @Description TODO()
  * @date 2018/4/19 16:38:37
  */
-public class NonDivisibleSubsetSolution {
+public class NonDivisibleSubsetSolution2 {
     /*
     * Complete the nonDivisibleSubset function below.
     */
@@ -27,7 +27,7 @@ public class NonDivisibleSubsetSolution {
         Arrays.sort(S);
         max.add(S[0]);
         max.add(-1);
-        for (int i = 0; i < S.length-1; i++) {
+        for (int i = 0; i < S.length; i++) {
             if (S[i] % k != 0) {
                 map.put(S[i], (S[i] % k));
                 in_arr.add(S[i]);
@@ -68,11 +68,9 @@ public class NonDivisibleSubsetSolution {
                     } else {
                         mix.set(0, max.get(1));
                     }
-                    if (k%temp == 0 && temp == k/temp) {
-                        map.remove(temp*k - temp);
-                    } else {
+
                         col.removeAll(mix);
-                    }
+
                 }
                 else {
                     if(mix.size() == 0) {
@@ -85,43 +83,18 @@ public class NonDivisibleSubsetSolution {
             }
             max.set(1, max.get(1).intValue() - 1);
         }
-       // return map.size() - (map.size() - col.size());
+        // return map.size() - (map.size() - col.size());
+        if(k%2 == 0) {
+            return col.size() + 2;
+        } else if (k%2 == 1) {
+            return col.size() + 1;
+        }
         return col.size();
-        //tree map to array list
-        //List<Integer> min_arr = new ArrayList<Integer>(tree_map.values());
-//        Object[] key_arrays =  tree_map.keySet().toArray();
-//        Object[] value_arrays = tree_map.values().toArray();
-
-        //slow
-//        List<Map.Entry<Integer,Integer>> list = new ArrayList<>(map.entrySet());
-//        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
-//            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-//                return  o2.getValue().compareTo(o1.getValue());
-//            }
-//        });
-//        Collection<Integer> col = map.values();
-//        int index = k % 2 == 0 ? k / 2 : k / 2 + (k % 2);
-//        while (max.get(1) >= index) {
-//            int temp = Math.abs(k - max.get(1));
-//            if (map.containsValue(temp) && map.containsValue(max.get(1)) ) {
-//                if (count.get(max.get(1)) < count.get(temp)) {
-//                    col.removeAll(max);
-//                } else {
-//                    mix.add(temp);
-//                    col.removeAll(mix);
-//                }
-//            }
-//            max.set(1, max.get(1).intValue() - 1);
-//        }
-
-//        return map.size() - (map.size() - col.size());
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        int a = 6, b =15, c = 9;
-        System.out.println(" a % c" + a % c + "  b % c" + b % c + "  a + b % c" + (a+b) % c);
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 //        String currentDate = df.format(new Date());
 //        try {
