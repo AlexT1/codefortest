@@ -19,77 +19,38 @@ public class NonDivisibleSubsetSolution2 {
         /*
          * Write your code here.
          */
-        List<Integer> in_arr = new ArrayList<Integer>();
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        List<Integer> max = new ArrayList<Integer>();
-        List<Integer> mix = new ArrayList<Integer>();
-        Map<Integer,Integer> count =  new HashMap<Integer, Integer>();
-        Arrays.sort(S);
-        max.add(S[0]);
-        max.add(-1);
-        for (int i = 0; i < S.length; i++) {
-            if (S[i] % k != 0) {
-                map.put(S[i], (S[i] % k));
-                in_arr.add(S[i]);
-                if (count.containsKey((S[i] % k))) {
-                    count.put((S[i] % k),count.get((S[i] % k))+1);
-                } else {
-                    count.put((S[i] % k),1);
-                }
-            }
-            if(S[i] % k == 0 && S[i] == k){
-                map.put(S[i], (S[i] % k));
-                count.put((S[i] % k),0);
-            }
-            if(S[i] < k && S[i] % k == k/2){
-                map.put(S[i], (S[i] % k));
-                count.put((S[i] % k),1);
-            }
-            if (max.get(1) < S[i] % k) {
-                max.set(0, S[i]);
-                max.set(1, S[i] % k);
-            }
+        int nonDivisibleSubsetCardinality = 0;
 
-        }
-        List<Map.Entry<Integer,Integer>> list = new ArrayList<>(count.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
-            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
-                return  o2.getValue().compareTo(o1.getValue());
-            }
-        });
-        Collection<Integer> col = map.values();
-        int index = k % 2 == 0 ? k / 2 : k / 2 + (k % 2);
-        while (max.get(1) >= index) {
-            int temp = Math.abs(k - max.get(1));
-            if (map.containsValue(temp) && map.containsValue(max.get(1)) ) {
-                if (count.get(max.get(1)) <= count.get(temp)) {
-                    if(mix.size() == 0) {
-                        mix.add(max.get(1));
-                    } else {
-                        mix.set(0, max.get(1));
-                    }
+        int[] modulusBuckets = new int[k];
 
-                        col.removeAll(mix);
+        //Place the values in buckets based on mod K
+        for(int i = 0; i < S.length; i++)
+        {
+            int bucket = S[i] % k;
+            modulusBuckets[bucket] += 1;
+        }
 
-                }
-                else {
-                    if(mix.size() == 0) {
-                        mix.add(temp);
-                    } else {
-                        mix.set(0, temp);
-                    }
-                    col.removeAll(mix);
-                }
-            }
-            max.set(1, max.get(1).intValue() - 1);
+        //Adds 1 if there is only 1 element in the 0 bucket or the k/2 bucket because these are edge cases
+        nonDivisibleSubsetCardinality += (modulusBuckets[0] >= 1) ? 1 : 0;
+        nonDivisibleSubsetCardinality += (k%2 == 0 && modulusBuckets[k/2] >= 1) ? 1 : 0;
+
+        //Determine the max buckets we can use
+        int maxBuckets = 0;
+        if(k%2 == 0)
+        {
+            maxBuckets = (k/2)-1;
         }
-        // return map.size() - (map.size() - col.size());
-        if(k%2 == 0) {
-            return col.size() + 2;
-        } else if (k%2 == 1) {
-            return col.size() + 1;
+        else
+        {
+            maxBuckets = k/2;
         }
-        return col.size();
+
+        //Picks the biggest bucket of each pair for each even sum group
+        for(int i = 1; i <= maxBuckets; i++)
+        {
+            nonDivisibleSubsetCardinality += Math.max(modulusBuckets[i], modulusBuckets[k-i]);
+        }
+        return nonDivisibleSubsetCardinality;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
