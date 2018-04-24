@@ -1,5 +1,7 @@
 package com.alexstudy.hackrank.Algorithms.Implementation;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -11,34 +13,30 @@ import java.util.Scanner;
 public class RepeatedStringSolution {
 //    The first line contains a single string, s.
 //    The second line contains an integer, n.
+//    Pattern pattern = Pattern.compile("^[^\\*]*\\*+.*$"); //regex
     static long repeatedString(String s, long n) {
         // Complete this function
-        int contains = 0;
-       contains = containsAcount(s);
-
-        if (s.length() < n) {
-            if (n - s.length() > s.length()) {
-                s.concat(s);
-                contains = contains * 2;
-            } else {
-                String temp = s.substring(0, Math.toIntExact(n-s.length()));
-                s.concat(temp);
-                contains += containsAcount(temp);
-            }
-        } else {
-            s.substring(0, Math.toIntExact(n));
-            contains += containsAcount(s);
+        int otherCharacter = 0;
+        String temp = "a";
+        Long size = 0l,index = 0l;
+        Map<Long,Integer> map = new HashMap<Long, Integer>();
+        if (s.equals(temp) != false || s.compareToIgnoreCase(temp) == s.length()) {
+            return n;
         }
-        return contains;
-    }
-    static int containsAcount(String source) {
-        int res = 0;
-        for(char c: source.toCharArray()){
-            if ( c == 'a'){
-                res++;
+        for(char c : s.toCharArray()){
+            if (c != temp.charAt(0)) {
+                otherCharacter++;
             }
+            map.put(index,otherCharacter);
+            index++;
         }
-        return res;
+        if (n%s.length() == 0) {
+            size = n - otherCharacter * (n / s.length());
+        } else if (n%s.length() != 0) {
+            index = n % s.length() - 1;
+            size = n - otherCharacter * (n / s.length()) - map.get(index);
+        }
+        return size;
     }
 
     public static void main(String[] args) {
