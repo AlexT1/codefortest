@@ -13,12 +13,32 @@ public class RepeatedStringSolution {
 //    The second line contains an integer, n.
     static long repeatedString(String s, long n) {
         // Complete this function
+        int contains = 0;
+       contains = containsAcount(s);
+
         if (s.length() < n) {
-            StringBuilder stringBuilder = new StringBuilder(s);
+            if (n - s.length() > s.length()) {
+                s.concat(s);
+                contains = contains * 2;
+            } else {
+                String temp = s.substring(0, Math.toIntExact(n-s.length()));
+                s.concat(temp);
+                contains += containsAcount(temp);
+            }
         } else {
             s.substring(0, Math.toIntExact(n));
+            contains += containsAcount(s);
         }
-        return 0;
+        return contains;
+    }
+    static int containsAcount(String source) {
+        int res = 0;
+        for(char c: source.toCharArray()){
+            if ( c == 'a'){
+                res++;
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
