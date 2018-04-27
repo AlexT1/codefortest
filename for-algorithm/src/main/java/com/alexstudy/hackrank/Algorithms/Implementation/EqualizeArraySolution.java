@@ -16,15 +16,18 @@ public class EqualizeArraySolution {
     static int equalizeArray(int[] arr) {
         // Complete this function
         Map<Integer,Integer> map = new HashMap<Integer, Integer>();
-
+        int max = 1;
         for(int i: arr){
             if(map.containsKey(i)){
                 map.put(i,map.get(i)+1);
+                if (map.get(i) > max) {
+                    max = map.get(i);
+                }
             } else {
                 map.put(i,1);
             }
         }
-        return arr.length;
+        return arr.length - max;
     }
 
     public static void main(String[] args) {
