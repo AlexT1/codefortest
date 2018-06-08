@@ -1,11 +1,15 @@
 package com.alexstudy.hackrank.Algorithms.Implementation;
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
- * @author AlexTong
+ * @author AlexTong;
  * @ClassName EqualizeArraySolution
  * @Description TODO()
  * @date 2018/4/24 18:18:58
@@ -29,7 +33,6 @@ public class EqualizeArraySolution {
         }
         return arr.length - max;
     }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
