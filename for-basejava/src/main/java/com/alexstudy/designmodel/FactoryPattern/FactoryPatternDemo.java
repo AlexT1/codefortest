@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class FactoryPatternDemo {
     public static void main(String[] args) {
+        BigDecimal big = new BigDecimal(54);
+        BigDecimal big2 = new BigDecimal(62954.38567).setScale(2,BigDecimal.ROUND_DOWN);
+        System.out.println("big2 :  " + big2.subtract(big) + "  compare :" + big2.compareTo(big));
         ProductFactory productFactory = new ProductFactory();
 
         //获取 JinRong 的对象，并调用它的 setChannelRankSequence 方法
@@ -53,7 +56,7 @@ public class FactoryPatternDemo {
         try {
             BigDecimal big = new BigDecimal(54);
             BigDecimal big2 = new BigDecimal(62954.38567).setScale(2,BigDecimal.ROUND_DOWN);
-            System.out.println("big2 :  " + big2.subtract(big));
+            System.out.println("big2 :  " + big2.subtract(big) + "  compare :" + big2.compareTo(big));
 //        System.out.println( "add : " + big.add(big2));
             //System.out.println(1/0);
             System.out.println( "Date before :" + curDate.before(formatDateStr.parse("2018-05-28 00:00:00")));

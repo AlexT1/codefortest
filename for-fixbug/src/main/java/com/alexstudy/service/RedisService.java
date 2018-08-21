@@ -479,7 +479,8 @@ public class RedisService {
      * @param value
      * @param liveTime
      */
-    public long setnx(final byte[] key, final byte[] value, final long liveTime) {
+    @SuppressWarnings("")
+    private long setnx(final byte[] key, final byte[] value, final long liveTime) {
         return redisTemplate.execute(new RedisCallback<Long>() {
             public Long doInRedis(RedisConnection connection)
                     throws DataAccessException {
