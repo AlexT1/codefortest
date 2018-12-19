@@ -14,8 +14,8 @@ public class BicycleDemo {
         System.out.println(num +  "   " + x3 + " " + x6);
         // Create two different
         // Bicycle objects
-        Bicycle bike1 = new Bicycle();
-        Bicycle bike2 = new Bicycle();
+        Bicycle bike1 = new Bicycle(1,1,1);
+        Bicycle bike2 = new Bicycle(2,3,3);
 
         // Invoke methods on
         // those objects
