@@ -11,6 +11,15 @@ import java.util.List;
  */
 public class ExercisesTestDemo {
     public static void main(String[] args) {
+        Rectangle rectangle1 = new Rectangle(1,1);
+        Rectangle rectangle2 = new Rectangle(23,45);
+        RectanglePlus rectanglePlus1 = new RectanglePlus(2,5);
+        RectanglePlus rectanglePlus2 = new RectanglePlus(5,8);
+        // throw runtime error: cause rectangle did not inherit relatable interface
+//        Object result1 = rectanglePlus1.findLargest(rectangle1,rectangle2);
+        Object result2 = rectanglePlus2.findSmallest(rectanglePlus1, rectanglePlus2);
+        System.out.println(((RectanglePlus)result2).getArea());
+
         String[] students = new String[10];
         String studentName = "Peter Smith";
         students[0] = studentName;

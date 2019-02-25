@@ -44,7 +44,10 @@ public class BoxDemo {
     }
 
     public static void main(String[] args) {
-        Map<String, List<String>> myMap = new HashMap(); // unchecked conversion warning
+        //Warning:(47, 43) java: 未经检查的转换
+        //需要: java.util.Map<java.lang.String,java.util.List<java.lang.String>>
+        //找到: java.util.HashMap
+//        Map<String, List<String>> myMap = new HashMap(); // unchecked conversion warning
         // Unchecked assignment: 'java.util.HashMap' to 'java.util.Map<java.lang.String,java.util.List<java.lang.String>>' less... (Ctrl+F1)
 
         java.util.ArrayList<Box<Integer>> listOfIntegerBoxes =

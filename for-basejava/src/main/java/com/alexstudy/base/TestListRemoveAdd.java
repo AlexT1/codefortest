@@ -8,7 +8,6 @@ import java.util.List;
  * @Description ${TODO}
  * @Author AlexTong
  * @Date 2018/10/8 15:33:19
- * @Copyright 通善金融
  */
 public class TestListRemoveAdd {
     public static void main(String[] args){

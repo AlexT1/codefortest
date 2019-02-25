@@ -7,10 +7,10 @@ package com.alexstudy.base;
  * @date 2018/8/13 14:10:48
  */
 //MyNode bridge method test
-public class Node<T> {
+public class NodeDemo<T> {
     public T data;
 
-    public Node(T data) { this.data = data; }
+    public NodeDemo(T data) { this.data = data; }
 
     public void setData(T data) {
         System.out.println("Node.setData");

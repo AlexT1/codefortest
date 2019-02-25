@@ -17,7 +17,7 @@ package com.alexstudy.base;
 //    }
 //}
 
-public class MyNode extends Node<Integer> {
+public class MyNode extends NodeDemo<Integer> {
     public MyNode(Integer data) { super(data); }
 
     public void setData(Integer data) {
@@ -28,7 +28,7 @@ public class MyNode extends Node<Integer> {
     public static void main(String[] args){
         //Consider the following code:
         MyNode mn = new MyNode(5);
-        Node n = mn;            // A raw type - compiler throws an unchecked warning
+        NodeDemo n = mn;            // A raw type - compiler throws an unchecked warning
       //  n.setData("Hello");
         n.setData(10);
         Integer x = mn.data;    // Causes a ClassCastException to be thrown.

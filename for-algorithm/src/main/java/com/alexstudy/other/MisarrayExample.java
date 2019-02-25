@@ -8,7 +8,6 @@ import java.util.BitSet;
  * @Description ${TODO}
  * @Author AlexTong
  * @Date 2018/11/26 10:51:33
- * @Copyright 通善金融
  */
 public class MisarrayExample {
     public static void main(String args[]) {

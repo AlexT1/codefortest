@@ -1,5 +1,8 @@
 package com.alexstudy.base;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author AlexTong
  * @ClassName WarningDemo
@@ -15,9 +18,25 @@ public class WarningDemo {
     public static void main(String[] args){
         GenericTest<Integer> bi;
         bi = createBox();
+        WarningDemo warningDemo = new WarningDemo();
+        warningDemo.processStringList(Collections.emptyList());
+    }
+
+    void  processStringList(List<String> stringList) {
+        // process stringList
+        System.out.println(stringList.getClass().toString());
     }
 
     static  GenericTest createBox(){
         return new  GenericTest();
     }
+
+//    public static void main(String[] args){
+//        Box<Integer> bi;
+//        bi = createBox();
+//    }
+//
+//    static Box createBox(){
+//        return new Box();
+//    }
 }

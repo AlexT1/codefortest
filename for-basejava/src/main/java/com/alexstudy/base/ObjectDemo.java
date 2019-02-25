@@ -5,9 +5,8 @@ package com.alexstudy.base;
  * @Description ${TODO}
  * @Author AlexTong
  * @Date 2018/11/26 15:33:30
- * @Copyright 通善金融
  */
-public class Object {
+public class ObjectDemo {
         // Has no fields
         // Has several methods, not shown...
 }

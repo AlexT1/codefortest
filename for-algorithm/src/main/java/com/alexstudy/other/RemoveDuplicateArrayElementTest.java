@@ -10,7 +10,6 @@ import java.util.Arrays;
  * @Description ${TODO}
  * @Author AlexTong
  * @Date 2018/11/26 15:03:15
- * @Copyright 通善金融
  */
 public class RemoveDuplicateArrayElementTest {
     private static final Logger logger = LoggerFactory.getLogger(RemoveDuplicateArrayElementTest.class);

@@ -8,11 +8,13 @@ import org.omg.CORBA.Environment;
  * @Description TODO()
  * @date 2018/8/24 15:58:52
  */
-public class Bicycle {
+public class Bicycle implements Cloneable {
+    // the Bicycle class has three fields
     int cadence = 0;
     int speed = 0;
     int gear = 1;
 
+    // the Bicycle class has four methods
     void changeCadence(int newValue) {
         cadence = newValue;
     }
@@ -35,12 +37,24 @@ public class Bicycle {
                 speed + " gear:" + gear);
     }
 
-    // the Bicycle class has
-   // one constructor
+    // the Bicycle class has one constructor
     public Bicycle(int startCadence, int startSpeed, int startGear) {
         gear = startGear;
         cadence = startCadence;
         speed = startSpeed;
+    }
+
+    public void printDescription(){
+        System.out.println("\nBike is " + "in gear " + this.gear
+                + " with a cadence of " + this.cadence +
+                " and travelling at a speed of " + this.speed + ". ");
+    }
+
+    public Bicycle returnCloneObject(Bicycle bicycle) throws CloneNotSupportedException {
+        Object object =  bicycle.clone();
+        ((Bicycle) object).changeCadence(8);
+        System.out.println("changed cadence: " +((Bicycle) object).cadence);
+        return  ((Bicycle) object);
     }
 
 //    public Bicycle seeWhosFastest(Bicycle myBike, Bicycle yourBike,

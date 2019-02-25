@@ -7,7 +7,6 @@ import java.util.Arrays;
  * @Description ${TODO}
  * @Author AlexTong
  * @Date 2018/11/26 13:55:50
- * @Copyright 通善金融
  */
 public class MaximumMinimumArrayDemo {
     public static void main(String args[]) {
