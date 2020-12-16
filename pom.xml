@@ -13,7 +13,7 @@
         <mongodb.data.version>2.0.2.RELEASE</mongodb.data.version>
         <fastjson.version>1.2.7</fastjson.version>
         <rabbitmq.version>2.0.1.RELEASE</rabbitmq.version>
-        <rabbitmq.client.version>5.1.1</rabbitmq.client.version>
+        <rabbitmq.client.version>5.4.0</rabbitmq.client.version>
         <commons.lang.version>2.6</commons.lang.version>
         <guava.version>23.0</guava.version>
         <data.commons.version>2.0.3.RELEASE</data.commons.version>
